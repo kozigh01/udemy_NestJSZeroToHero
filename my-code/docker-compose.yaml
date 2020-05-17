@@ -1,0 +1,32 @@
+version: "3"
+services: 
+  postgres:
+    image: postgres:latest
+    # build:
+    #   dockerfile: Dockerfile.dev
+    #   context: ./db
+    restart: unless-stopped
+    hostname: postgres
+    environment: 
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=NestJS
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  pgadmin:
+    image: 'dpage/pgadmin4:latest'
+    restart: unless-stopped
+    depends_on: 
+      - postgres
+    environment: 
+      - PGADMIN_DEFAULT_EMAIL=user@domain.com
+      - PGADMIN_DEFAULT_PASSWORD=SuperSecret
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+volumes:
+    db-data:
+    pgadmin:
