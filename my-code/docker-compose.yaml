@@ -6,11 +6,11 @@ services:
     #   dockerfile: Dockerfile.dev
     #   context: ./db
     restart: unless-stopped
-    hostname: postgres
+    hostname: local
     environment: 
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=NestJS
+      - POSTGRES_USER=postgres123
+      - POSTGRES_PASSWORD=postgres123!
+      - POSTGRES_DB=taskmanagement
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:
