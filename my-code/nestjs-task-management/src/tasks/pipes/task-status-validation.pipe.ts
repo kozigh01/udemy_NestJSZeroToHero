@@ -10,7 +10,6 @@ export class TaskStatusValidationPipe implements PipeTransform {
             throw new BadRequestException(`Status '${value}' is not a valid TaskStatus value.`);
         }
 
-
         return value;
     }
 }
