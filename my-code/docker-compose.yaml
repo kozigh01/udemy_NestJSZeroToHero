@@ -1,5 +1,17 @@
 version: "3"
 services: 
+  mongo:
+    image: mongo:4.2.6-bionic
+    container_name: mongodb
+    restart: unless-stopped
+    environment: 
+      - MONGO_INITDB_DATABASE=mymongodb
+      - MONGO_INITDB_ROOT_USERNAME=mdk
+      - MONGO_INITDB_ROOT_PASSWORD=pw@docker_mdk
+    volumes: 
+      - mongo-db:/data/db
+    ports:
+      - "27017-27019:27017-27019"
   postgres:
     image: postgres:latest
     # build:
@@ -30,3 +42,4 @@ services:
 volumes:
     db-data:
     pgadmin:
+    mongo-db:
